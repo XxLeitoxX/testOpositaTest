@@ -1,0 +1,20 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+:root {
+  --chakra-fontSizes-lg: '18px';
+  --chakra-colors-gray-100: '#fafafa';
+  --chakra-colors-gray-200: '#f7f7f7';
+}
+
+body{
+  background: #19202b !important;
+}
+
+.css-17mg6aq {
+  border-top-width: 0px !important;
+}

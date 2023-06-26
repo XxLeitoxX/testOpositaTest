@@ -19,7 +19,7 @@ const PostItem: React.FC<Post> = ({ id, title, tags, reactions }) => {
   const isFavorite = favorites.includes(id);
 
   return (
-    <Card align="center" cursor="pointer" mt={5}>
+    <Card align="center" cursor="pointer" mt={5} mb={5}>
       <CardHeader bg="#2d3747" w="100%" h={55}>
         <Flex justifyContent="end">
           {isFavorite && <StarIcon color="yellow.400" fontSize="25px" />}

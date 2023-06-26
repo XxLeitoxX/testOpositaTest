@@ -6,13 +6,13 @@ import { FavoriteProvider } from "../context/FavoriteContext";
 describe("PostItem", () => {
   const post = {
     id: 1,
-    title: "Título de prueba",
+    title: "Test title",
     tags: ["tag1", "tag2", "tag3"],
     reactions: 5,
-    body: "Este es un ejemplo",
+    body: "This is an example",
   };
 
-  it("Renderiza el componente PostItem correctamente", () => {
+  it("should render the PostItem component correctly", () => {
     const { getByText } = render(
       <FavoriteProvider>
         <PostItem
@@ -25,7 +25,7 @@ describe("PostItem", () => {
       </FavoriteProvider>,
     );
 
-    const titleElement = getByText("Título de prueba");
+    const titleElement = getByText("Test title");
     expect(titleElement).toBeInTheDocument();
 
     const tags = getByText("tag1");

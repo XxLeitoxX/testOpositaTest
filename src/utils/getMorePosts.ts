@@ -3,8 +3,9 @@ import { Post } from "../interfaces";
 
 export const getMorePosts = async () => {
   try {
-  
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      //Con este setTime se nota como cargan los post de forma perezosa
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       const { data } = await Api.get<Post>(`/posts?limit=60`);
       
       return data;

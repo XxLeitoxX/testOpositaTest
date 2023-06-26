@@ -15,29 +15,29 @@ describe("PostModal", () => {
     mockToggleFavorite.mockClear();
   });
 
-  it("Renderiza el componente PostModal correctamente", () => {
+  it("should render the PostModal component correctly", () => {
     const props = {
       isOpen: true,
       onClose: mockOnClose,
-      title: "Título de prueba",
-      body: "Contenido de prueba",
+      title: "Test title",
+      body: "Test content",
       tags: ["tag1", "tag2", "tag3"],
       reactions: 5,
       comment: [
         {
           id: 1,
           comments: [],
-          body: "Comentario 1",
+          body: "Comment 1",
         },
         {
           id: 2,
           comments: [],
-          body: "Comentario 2",
+          body: "Comment 2",
         },
         {
           id: 3,
           comments: [],
-          body: "Comentario 3",
+          body: "Comment 3",
         },
       ],
       id: 1,
@@ -58,10 +58,10 @@ describe("PostModal", () => {
       </FavoriteProvider>,
     );
 
-    const titleElement = getByText("Título de prueba");
+    const titleElement = getByText("Test title");
     expect(titleElement).toBeInTheDocument();
 
-    const bodyElement = getByText("Contenido de prueba");
+    const bodyElement = getByText("Test content");
     expect(bodyElement).toBeInTheDocument();
 
     const tagElements = getByText("tag1");
@@ -74,12 +74,12 @@ describe("PostModal", () => {
     expect(commentElements.length).toBe(3);
   });
 
-  it("Llama a la función onClose al cerrar el modal", () => {
+  it("should call the function to close the modal", () => {
     const props = {
       isOpen: true,
       onClose: mockOnClose,
-      title: "Título de prueba",
-      body: "Contenido de prueba",
+      title: "Test title",
+      body: "Test body",
       tags: [],
       reactions: 0,
       comment: [],

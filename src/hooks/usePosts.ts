@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Comments, Post } from '../interfaces';
-import { getPosts, getCommentsById, getMorePosts } from '../utils';
+import { useState } from 'react';
+import {  Post } from '../interfaces';
+import { getPosts, getMorePosts } from '../services';
 
 
 const usePosts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [coments, setComents] = useState<Comments[]>([]);
   const [error, setError] = useState<Error | null | unknown>(null);
   
   const listPosts = async () => {
@@ -32,26 +31,7 @@ const usePosts = () => {
     }
   };
 
-
-  const listCommentById = async (postId: number) => {
-    try {
-
-      const data = await getCommentsById(postId);
-      if (data !== null && data.comments !== undefined) {
-        setComents(data.comments);
-      }
-
-    } catch (error) {
-      console.error('Error fetching post comments:', error);
-      return '';
-    }
-  };
-
-  useEffect(() => {
-    listPosts();
-  }, []);
-
-  return { posts, listPosts, listCommentById, coments, listMorePosts, error };
+  return { posts, listPosts, listMorePosts, error };
 };
 
 export default usePosts;

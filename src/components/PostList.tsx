@@ -10,27 +10,29 @@ import { useFavoriteContext } from "../context/FavoriteContext";
 import useModal from "../hooks/useModal";
 
 const PostList: React.FC = () => {
-  const { posts, listMorePosts, error } = usePosts();
+  const { posts, listMorePosts, error, listPosts } = usePosts();
   const { favorites } = useFavoriteContext();
   const { openModal, closeModal, selectedPost, coments } = useModal();
   const [hasMore, setHasMore] = useState(true);
 
-  const postsConFavorito: (Post & { favorite: boolean })[] = posts.map(
-    (post) => ({
-      ...post,
-      favorite: favorites.includes(post.id),
-    }),
-  );
+  const postFavorites: (Post & { favorite: boolean })[] = posts.map((post) => ({
+    ...post,
+    favorite: favorites.includes(post.id),
+  }));
 
   //Ordena los favoritos primero
-  postsConFavorito.sort((a, b) => (b.favorite ? 1 : 0) - (a.favorite ? 1 : 0));
+  postFavorites.sort((a, b) => (b.favorite ? 1 : 0) - (a.favorite ? 1 : 0));
+
+  useEffect(() => {
+    listPosts();
+  }, []);
 
   useEffect(() => {
     setHasMore(true);
-    if (postsConFavorito.length >= 60) {
+    if (postFavorites.length >= 60) {
       setHasMore(false);
     }
-  }, [postsConFavorito]);
+  }, [postFavorites]);
 
   if (error) {
     return (
@@ -44,7 +46,7 @@ const PostList: React.FC = () => {
   return (
     <>
       <InfiniteScroll
-        dataLength={postsConFavorito.length}
+        dataLength={postFavorites.length}
         next={listMorePosts}
         hasMore={hasMore}
         loader={<Spinner color="#285e61" />}
@@ -54,7 +56,7 @@ const PostList: React.FC = () => {
           </Text>
         }
       >
-        {postsConFavorito.map((post) => (
+        {postFavorites.map((post) => (
           <GridItem key={post.id} onClick={() => openModal(post)} h="300">
             <PostItem
               title={post.title}

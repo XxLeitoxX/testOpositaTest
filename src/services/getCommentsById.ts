@@ -1,4 +1,4 @@
-import { Api } from "../services";
+import { Api } from ".";
 import { Comments } from "../interfaces";
 
 export const getCommentsById = async (postId: number) => {

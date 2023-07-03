@@ -1,6 +1,6 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { getPosts } from "../utils";
+import { getPosts } from "../services";
 
 describe("getPosts", () => {
   it("should fetch posts from the API", async () => {

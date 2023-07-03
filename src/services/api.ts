@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const pokeApi = axios.create({
+const postApi = axios.create({
     baseURL: 'https://dummyjson.com'
 })
 
-export default pokeApi;
+export default postApi;
